@@ -1,6 +1,6 @@
 {
 	"name": "cordova-plugin-wkwebview",
-	"version": "0.3.8",
+	"version": "0.3.9",
 	"cordova": {
 		"id": "cordova-plugin-wkwebview",
 		"platforms":
