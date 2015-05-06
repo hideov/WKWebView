@@ -1,5 +1,5 @@
 # Cordova WKWebView Polyfill Plugin
-by [Eddy Verbruggen](http://twitter.com/eddyverbruggen) / [Telerik](http://www.telerik.com) / [Etiennead](http://twitter.com/etiennead)
+by [Eddy Verbruggen](http://twitter.com/eddyverbruggen) / [Telerik](http://www.telerik.com) / with some mini tweaks by [Etiennead](http://twitter.com/etiennead)
 
 ## 0. Index
 
@@ -33,6 +33,12 @@ It's a screenshot of the [demo app](demo/index.html).
 
 ## 3. Installation
 
+Tested in phonegap 4.x and cordova CLI 5.x
+```
+$ cordova plugin add cordova-plugin-wkwebview
+```
+
+Pre 3.x
 ```
 $ cordova plugin add com.telerik.plugins.wkwebview
 $ cordova prepare
@@ -68,6 +74,7 @@ function convertCacheDest(dest) {
 ```
 
 ## 5. Changelog
+* __0.3.8__  Custom URL Schemes did not work, see #98, also this version includes crash recovery, thanks #62!
 * __0.3.7__  Custom URL Schemes did not work, see #98, also this version includes crash recovery, thanks #62!
 * __0.3.6__  Bind embedded webserver to localhost so it can't be reached from the outside, thanks #64!
 * __0.3.5__  Compatibility with the statusbar plugin: allow the statusbar to not overlay the webview, thanks #6 and #20!
