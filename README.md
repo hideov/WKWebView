@@ -1,5 +1,5 @@
 # Cordova WKWebView Polyfill Plugin
-by [Eddy Verbruggen](http://twitter.com/eddyverbruggen) / [Telerik](http://www.telerik.com)
+by [Eddy Verbruggen](http://twitter.com/eddyverbruggen) / [Telerik](http://www.telerik.com) / [Etiennead](http://twitter.com/etiennead)
 
 ## 0. Index
 
@@ -40,7 +40,34 @@ $ cordova prepare
 
 No need for anything else - you can now open the project in XCode 6 if you like.
 
-## 4. Changelog
+## 4. Usage 
+
+For html/css/js bundled in the archive
+```
+ // reroute protocol-less GET requests to our embedded http server to defeat Origin null issues
+  (function() {
+    var proxied = window.XMLHttpRequest.prototype.open;
+    window.XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+      if (method == "GET" && url.indexOf("://") == -1) {
+        arguments[1] = "http://localhost:12344/" + url;
+      }
+      return proxied.apply(this, arguments);
+    };
+  })();
+```
+For files downloaded by the app into Documents: ie updates via https://github.com/phonegap/phonegap-plugin-contentsync or imagecache.js
+```
+ // reroute protocol-less GET requests to our embedded http server to defeat Origin null issues
+function convertCacheDest(dest) {
+  var found = dest.indexOf('imgcache');
+  if (cordova.exec.jsToNativeModes.WK_WEBVIEW_BINDING && dest.indexOf('imgcache')) {
+    return 'http://localhost:12345/Documents/' + dest.substring(found);
+  }
+  return dest;
+}
+```
+
+## 5. Changelog
 * __0.3.7__  Custom URL Schemes did not work, see #98, also this version includes crash recovery, thanks #62!
 * __0.3.6__  Bind embedded webserver to localhost so it can't be reached from the outside, thanks #64!
 * __0.3.5__  Compatibility with the statusbar plugin: allow the statusbar to not overlay the webview, thanks #6 and #20!
@@ -62,10 +89,10 @@ No need for anything else - you can now open the project in XCode 6 if you like.
 * __0.1.0__  Added support for loading local files via XHR. This should now transparently work for $.ajax, AngularJS templateUrl's, etc. To this end the plugin adds an embedded HTTP server on port 12344 which is stopped when the app is put to sleep or exits.
 * __0.0.1__  Initial version
 
-## 5. Credits
+## 6. Credits
 This plugin was inspired by the hard work of the Apache Cordova team [(and most notably Shazron)](https://github.com/shazron/WKWebViewFIleUrlTest).
 
-## 6. License
+## 7. License
 
 [The MIT License (MIT)](http://www.opensource.org/licenses/mit-license.html)
 
