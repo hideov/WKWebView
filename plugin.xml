@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="com.telerik.plugins.wkwebview"
+        id="com.telerik.plugins.wkwebviewF"
         version="0.3.7">
 
   <name>WKWebView Polyfill</name>
