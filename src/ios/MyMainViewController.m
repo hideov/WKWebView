@@ -112,7 +112,7 @@
   
   // avoid the white flash while opening the app
   [self.wkWebView setOpaque:NO];
-  self.wkWebView.backgroundColor = [UIColor clearColor];
+  // self.wkWebView.backgroundColor = [UIColor clearColor];
 
   _webViewOperationsDelegate = [[CDVWebViewOperationsDelegate alloc] initWithWebView:self.webView];
 
